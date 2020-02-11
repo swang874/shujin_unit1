@@ -107,3 +107,30 @@ function addEvents(){
 
 //call the initialize function when the document has loaded
 $(document).ready(initialize);
+
+//---------- Week 3 ----------
+
+//define callback function
+function debugCallback(mydata){
+  //add the response data as plain text
+	$(mydiv).append('<br>GeoJSON data:<br>' + JSON.stringify(mydata));
+};
+
+//define AJAX function
+function debugAjax(){
+  //define a variable to hold the data
+	var mydata;
+
+  //basic jQuery ajax mathod
+	$.ajax("data/MegaCities.geojson", {
+		dataType: "json",
+		success: function(response){
+			//call the callback function
+      mydata = response;
+			debugCallback(mydata);
+		}
+	});
+};
+
+//call the AJAX function when the document has loaded
+$(document).ready(debugAjax);
